@@ -1,5 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/User");
+const star = require("../controllers/StarParser");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -21,4 +22,5 @@ module.exports = function (app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+  app.get("/api/test/dbf", star.readStarDBF);
 };
